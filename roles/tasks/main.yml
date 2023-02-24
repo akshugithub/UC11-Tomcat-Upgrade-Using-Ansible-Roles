@@ -1,0 +1,37 @@
+---
+- name: Stop tomcat service
+  systemd:
+    name: tomcat9
+    state: stopped
+    daemon_reload: true
+- name: create tomcat directory
+  file:
+    path: /opt/tomcat10/apache-tomcat-{{version}}
+    owner: tomcat
+    group: tomcat
+    mode: 755
+    recurse: yes
+- name: download and unarchive tomcat
+  unarchive:
+    src: "{{src}}"
+    dest: /opt/tomcat10/apache-tomcat-{{version}}
+    extra_opts: [ --strip-components=1]
+- name: change ownership of tomcat directory
+  file:
+    path: /opt/tomcat10/apache-tomcat-{{ version }}
+    owner: tomcat
+    group: tomcat
+    mode: u+rwx,g+rx,o=rx
+    recurse: yes
+    state: directory
+- name: changing the link
+  file:
+    src: /opt/tomcat10/apache-tomcat-{{ version }}
+    dest: /opt/tomcat10/updated
+    state: link
+    force: yes
+- name: Start Tomcat on sever
+  systemd:
+    name: tomcat10
+    state: started
+    daemon_reload: true
