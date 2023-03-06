@@ -15,6 +15,7 @@
   unarchive:
     src: "{{src}}"
     dest: /opt/tomcat10/apache-tomcat-{{version}}
+    remote-src: yes
     extra_opts: [ --strip-components=1]
 - name: change ownership of tomcat directory
   file:
@@ -32,6 +33,6 @@
     force: yes
 - name: Start Tomcat on sever
   systemd:
-    name: tomcat10
+    name: tomcat
     state: started
     daemon_reload: true
