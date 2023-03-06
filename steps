@@ -1,0 +1,7 @@
+Create ec2 instance and install ansible
+Install tomcat 8 or 9 ans bring up tomcat
+Enable tomcat as a service - refer https://gist.github.com/ovichiro/d24c53ce4902ef41cc208efeadd596b6
+Create ansible roles using galaxy command
+Create roles for executing tasks and defining variables
+Write ansible playbook for execution
+Execute ansible playbook
